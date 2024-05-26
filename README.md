@@ -44,6 +44,7 @@ const ticket = new Tickets(Client)
 
 > You will have this result</br>
 ![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/7a865909-ab37-4c37-9b4f-0d0a4fcce9fa)
-</br>
+
+
 > And when a user open a ticket <br/>
 ![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/b3b6149d-d548-4c2b-b4aa-0fee0f3f64f0)

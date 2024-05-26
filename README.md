@@ -1,5 +1,6 @@
 # discord-tickets-pro
 > Discord-tickets-pro is a powerful javascript module for create easely tickets from your discord bot.
+> You can join (my discord server)[https://discord.gg/x5P9WxynNw] for more imformation
 
 ## Exemple
 ```

@@ -30,3 +30,5 @@ const ticket = new Tickets(Client)
 - `.setFooter(...)` (Optionnal) : The embed's footer
 - `.setCreatedTicketMessage(...)` (Required) : The description of the embed when the ticket is created (See text variables)
 - `.setStaffRole(...)` (Required) : The members which have this role will be added in the ticket
+
+## Text variables

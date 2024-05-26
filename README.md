@@ -28,7 +28,7 @@ const ticket = new Tickets(Client)
 - `.setTitle(...)` (Required) : The embed's title
 - `.setThumbnail(...)` (Optionnal) : The embed's thumbnail
 - `.setFooter(...)` (Optionnal) : The embed's footer
-- `.setCreatedTicketMessage(...)` (Required) : The description of the embed when the ticket is created (See text variables)
+- `.setCreatedTicketMessage(...)` (Required) : The description of the embed when the ticket is created (See [Text variables](https://github.com/lotus64yt/discord-tickets-pro/blob/main/README.md#text-variables))
 - `.setStaffRole(...)` (Required) : The members which have this role will be added in the ticket
 
 ## Text variables

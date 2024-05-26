@@ -3,7 +3,9 @@
 > You can join [my discord server](https://discord.gg/x5P9WxynNw) for more imformation
 
 ## Exemple
-```
+```js
+const Tickets = require("discord-tickets-pro")
+
 const ticket = new Tickets(Client)
         .setGuild("1096520545656393739")
         .setChannel("1096520546306490390")

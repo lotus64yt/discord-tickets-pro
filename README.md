@@ -32,3 +32,8 @@ const ticket = new Tickets(Client)
 - `.setStaffRole(...)` (Required) : The members which have this role will be added in the ticket
 
 ## Text variables
+> Only enabled for the `.setCreatedTicketMessage(...)`
+
+- {member} : User mention
+- {member.id} : User's id
+- {member.username} : User's username

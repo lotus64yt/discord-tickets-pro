@@ -11,10 +11,9 @@ Use ```npm i discord-tickets-pro``` to install the module
 
 You can create send the panel ticket using the `TicketPanelEmbed`:
 ```js
-        new TicketPanelEmbed(Client)
-            .setChannel("channelId")
-            .setGuild("guildId")
-            .setComponents([   //Send up to 5 custom ActionRow in your message who can contain buttons and menu
+const panel = new TicketPanelEmbed(Client)
+            .setChannel(message.channel)
+            .setComponents([
                 new Discord.ActionRowBuilder()
                     .setComponents([
                         new Discord.ButtonBuilder()
@@ -24,7 +23,7 @@ You can create send the panel ticket using the `TicketPanelEmbed`:
                             .setCustomId("ticketOpen")
                     ])
             ])
-            .setEmbeds([       //Send up to 5 custom embeds in your message
+            .setEmbeds([
                 new Discord.EmbedBuilder()
                     .setTitle("Discord-tickets-pro")
                     .setDescription("Click the button to talk to the staff")
@@ -33,16 +32,19 @@ You can create send the panel ticket using the `TicketPanelEmbed`:
                         iconURL: Client.user.avatarURL()
                     })
             ])
-            .send()
+
+            await panel.send()
 ```
 
 ### Tickets manager (Create Ticket)
 ```js
-new TicketsManager(Client)
+const members = interaction.guild.roles.cache.get("1173039883707764797").members.map(e => e.user)
+
+        new TicketsManager(Client)
             .createTicket({
                 guild: "guildId",
                 interaction: interaction,
-                components: [ // Send up to 5 ActionRow for custom Actions
+                components: [
                     new Discord.ActionRowBuilder()
                         .setComponents([
                             new Discord.ButtonBuilder()
@@ -59,16 +61,13 @@ new TicketsManager(Client)
                                 .setStyle(Discord.ButtonStyle.Secondary)
                         ])
                 ],
-                accessMembers: [
-                    "memberId1",
-                    "memberId2",...
-                ],
-                embeds: [ // Send up to 5 embeds
+                accessMembers: members, //user objects (Array)
+                embeds: [
                     new Discord.EmbedBuilder()
                         .setTitle("Discord-tickets-pro")
-                        .setDescription(`<@${interaction.user.id}> have open a tickets.`)
+                        .setDescription(`<@${interaction.user.id}> have open a ticket.`)
                 ],
-                parentId: "parentId" // if null, the ticket will be in a thread
+                parentId: "1222274711182901349" // if null, the ticket will be in a thread
             })
 ```
 ### Tickets manager (Archive Ticket) 
@@ -115,13 +114,7 @@ new TicketsManager(Client)
 ## Images
 > The images are corresponding to the [exemple code](https://github.com/lotus64yt/discord-tickets-pro/blob/main/exemple.js)</br>
 
-### Ticket in Channel
-![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/8d51e3ce-b131-412f-8a04-563b5e43f23e)
+![alt text](image.png)
 
-![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/91d4edcf-bcd2-4aa2-9c2b-6fc5fa7b71a3)
 
-### Ticket in Thread        
-![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/9ba025e5-e2ed-4814-b1dc-b5fa4bd32288)
-
-### Transcript
-![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/66ccb78f-7c64-4c08-98fb-d9cb0f4955ac)
+![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/b3b6149d-d548-4c2b-b4aa-0fee0f3f64f0)

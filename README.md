@@ -89,7 +89,7 @@ new TicketsManager(Client)
 ```
 
 ### Tickets manager (Create Transcript)
-> This method use a [external module](https://www.npmjs.com/package/discord-html-transcripts)
+> This method use an [external module](https://www.npmjs.com/package/discord-html-transcripts)
 
 ```js
 new TicketsManager(Client)

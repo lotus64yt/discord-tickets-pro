@@ -1,0 +1,29 @@
+{
+  "name": "discord-tickets-pro",
+  "version": "1.0.3",
+  "description": "Create discord tickets with ease!",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lotus64yt/discord-tickets-pro/"
+  },
+  "keywords": [
+    "discord",
+    "ticket",
+    "djs",
+    "discord.js"
+  ],
+  "author": "lotus64",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lotus64yt/discord-tickets-pro/issues"
+  },
+  "homepage": "https://lmc-site.vercel.app/home",
+  "dependencies": {
+    "discord-html-transcripts": "^3.2.0",
+    "discord.js": "^14.15.2"
+  }
+}

@@ -71,7 +71,7 @@ const members = interaction.guild.roles.cache.get("1173039883707764797").members
             })
 ```
 ### Tickets manager (Archive Ticket) 
-> ⚠️ This method is reserved for threads ⚠️
+> ⚠️ This method is reserved for channel not threads ⚠️
 This method will close the ticket (no delete it), the manager will :
 - Rename the channel (`ticket-` -> `closed-`)
 - Deny the member who open the ticket the permission of view the channel

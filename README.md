@@ -1,53 +1,121 @@
 # discord-tickets-pro
 > Discord-tickets-pro is a powerful javascript module for create easely tickets from your discord bot.
-> You can join [my discord server](https://discord.gg/x5P9WxynNw) for more imformation
+> You can join [my discord server](https://discord.gg/x5P9WxynNw) for help and support me
 
-## Exemple
+## Instalation
+Use ```npm i discord-tickets-pro``` to install the module
+
+## Get started
+
+### Send panel
+
+You can create send the panel ticket using the `TicketPanelEmbed`:
 ```js
-const Tickets = require("discord-tickets-pro")
-
-const ticket = new Tickets(Client)
-        .setGuild("1096520545656393739")
-        .setChannel("1096520546306490390")
-        .setButtonLabel("Open Ticket")
-        .setButtonStyle(ButtonStyle.Primary)
-        .setButtonEmoji("🎫")
-        .setMessage("This is the message")
-        .setTitle("This is a title")
-        .setThumbnail("https://images-ext-1.discordapp.net/external/kpnOMiwK5EiAAtlvLDEQ7k3YAdIfiytCQA7PlVJkoJI/https/cdn.discordapp.com/avatars/922130278443528232/a_86e367b840be27fafa58564086ac4a9d.gif?width=192&height=192")
-        .setFooter("discord-tickets-pro")
-        .setCreatedTicketMessage("Ticket created by {member}")
-        .setStaffRole("1173039883707764797")
+        new TicketPanelEmbed(Client)
+            .setChannel("channelId")
+            .setGuild("guildId")
+            .setComponents([   //Send up to 5 custom ActionRow in your message who can contain buttons and menu
+                new Discord.ActionRowBuilder()
+                    .setComponents([
+                        new Discord.ButtonBuilder()
+                            .setLabel("Open a ticket")
+                            .setEmoji("🎫")
+                            .setStyle(Discord.ButtonStyle.Primary)
+                            .setCustomId("ticketOpen")
+                    ])
+            ])
+            .setEmbeds([       //Send up to 5 custom embeds in your message
+                new EmbedBuilder()
+                    .setTitle("Discord-tickets-pro")
+                    .setDescription("Click the button to talk to the staff")
+                    .setFotter({
+                        text: `1.0.3`,
+                        iconURL: Client.user.avatarURL()
+                    })
+            ])
+            .send()
 ```
-> This code will create the base of the message, for send it you just have to put `ticket.send()`
 
-### Details
-- `new Tickets(Client)` (Required) : Variable `Client` is your bot client
-- `.setGuild(...)` (Required) : Set the guild of the ticket panel
-- `.setChannel(...)` (Required) : Set the channel of the ticket panel
-- `.setButtonLabel(...)` (Optionnal if emoji set) : Set the button's label
-- `.setButtonEmoji(...)` (Optionnal if label set) : Set the button's emoji
-- `.setMessage(...)` (Required) : The embed's description
-- `.setTitle(...)` (Required) : The embed's title
-- `.setThumbnail(...)` (Optionnal) : The embed's thumbnail
-- `.setFooter(...)` (Optionnal) : The embed's footer
-- `.setCreatedTicketMessage(...)` (Required) : The description of the embed when the ticket is created (See [Text variables](https://github.com/lotus64yt/discord-tickets-pro/blob/main/README.md#text-variables))
-- `.setStaffRole(...)` (Required) : The members which have this role will be added in the ticket
+### Tickets manager (Create Ticket)
+```js
+new TicketsManager(Client)
+            .createTicket({
+                guild: "guildId",
+                interaction: interaction,
+                components: [ // Send up to 5 ActionRow for custom Actions
+                    new Discord.ActionRowBuilder()
+                        .setComponents([
+                            new Discord.ButtonBuilder()
+                                .setEmoji("🚮")
+                                .setStyle(Discord.ButtonStyle.Danger)
+                                .setCustomId("ticketDelete"),
+                            new Discord.ButtonBuilder()
+                                .setCustomId("ticketArchive")
+                                .setEmoji("⛔")
+                                .setStyle(Discord.ButtonStyle.Primary),
+                            new Discord.ButtonBuilder()
+                                .setCustomId("ticketTranscript")
+                                .setEmoji("🪪")
+                                .setStyle(Discord.ButtonStyle.Secondary)
+                        ])
+                ],
+                accessMembers: [
+                    "memberId1",
+                    "memberId2",...
+                ],
+                embeds: [ // Send up to 5 embeds
+                    new EmbedBuilder()
+                        .setTitle("Discord-tickets-pro")
+                        .setDescription(`<@${interaction.user.id}> have open a tickets.`)
+                ],
+                parentId: "parentId" // if null, the ticket will be in a thread
+            })
+```
+### Tickets manager (Archive Ticket) 
+> ⚠️ This method is reserved for threads ⚠️
+This method will close the ticket (no delete it), the manager will :
+- Rename the channel (`ticket-` -> `closed-`)
+- Deny the member who open the ticket the permission of view the channel
+- Move to the given channel parent
 
-## Text variables
-> Only enabled for the `.setCreatedTicketMessage(...)`
+```js
+new TicketsManager(Client)
+            .closeTicket({
+                interaction: interaction,
+                channel: interaction.channel,
+                ticketCreatorId: "memberId", // the Id of the member who opened the ticket
+                archiveParent: interaction.channel.parent // the channel parent object, can be null
+            })
+```
 
-- {member} : User mention
-- {member.id} : User's id
-- {member.username} : User's username
+### Tickets manager (Create Transcript)
+> This method use a [external module](https://www.npmjs.com/package/discord-html-transcripts)
+
+```js
+new TicketsManager(Client)
+            .createTranscript({
+                channel: interaction.channel, // the channel to "copy" in the transcript
+                transcriptChannel: interaction.channel // channel object
+            })
+```
+
+### Tickets manager (Delete Ticket)
+> ⚠️ This method will delete the ticket, you can access the channel after ⚠️
+
+```js
+new TicketsManager(Client)
+            .deleteTicket({
+                channel: interaction.channel,
+                interaction: interaction
+            })
+```
+
+
 
 ## Images
-> With this code </br>
-![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/1af9e118-08f2-4496-a121-c5e9e991e44b)
+> The images are corresponding to the [exemple code](https://github.com/lotus64yt/discord-tickets-pro/blob/main/exemple.js)</br>
 
-> You will have this result</br>
 ![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/7a865909-ab37-4c37-9b4f-0d0a4fcce9fa)
 
 
-> And when a user open a ticket <br/>
 ![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/b3b6149d-d548-4c2b-b4aa-0fee0f3f64f0)

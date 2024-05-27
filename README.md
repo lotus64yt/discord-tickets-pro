@@ -25,10 +25,10 @@ You can create send the panel ticket using the `TicketPanelEmbed`:
                     ])
             ])
             .setEmbeds([       //Send up to 5 custom embeds in your message
-                new EmbedBuilder()
+                new Discord.EmbedBuilder()
                     .setTitle("Discord-tickets-pro")
                     .setDescription("Click the button to talk to the staff")
-                    .setFotter({
+                    .setFooter({
                         text: `1.0.3`,
                         iconURL: Client.user.avatarURL()
                     })
@@ -64,7 +64,7 @@ new TicketsManager(Client)
                     "memberId2",...
                 ],
                 embeds: [ // Send up to 5 embeds
-                    new EmbedBuilder()
+                    new Discord.EmbedBuilder()
                         .setTitle("Discord-tickets-pro")
                         .setDescription(`<@${interaction.user.id}> have open a tickets.`)
                 ],
@@ -115,7 +115,13 @@ new TicketsManager(Client)
 ## Images
 > The images are corresponding to the [exemple code](https://github.com/lotus64yt/discord-tickets-pro/blob/main/exemple.js)</br>
 
-![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/7a865909-ab37-4c37-9b4f-0d0a4fcce9fa)
+### Ticket in Channel
+![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/8d51e3ce-b131-412f-8a04-563b5e43f23e)
 
+![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/91d4edcf-bcd2-4aa2-9c2b-6fc5fa7b71a3)
 
-![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/b3b6149d-d548-4c2b-b4aa-0fee0f3f64f0)
+### Ticket in Thread        
+![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/9ba025e5-e2ed-4814-b1dc-b5fa4bd32288)
+
+### Transcript
+![image](https://github.com/lotus64yt/discord-tickets-pro/assets/114228798/66ccb78f-7c64-4c08-98fb-d9cb0f4955ac)
